@@ -1,0 +1,27 @@
+spack:
+  view: false
+  concretizer:
+    unify: when_possible
+
+  specs:
+  # - python
+  - zstd
+
+  config:
+    install_tree:
+      root: /opt/spack
+      padded_length: 128
+
+  packages:
+    all:
+      require: 'target=x86_64'
+
+  mirrors:
+    gh-buildcache:
+      url: oci://ghcr.io/viperML/spack-ci
+      # autopush: true
+      binary: true
+      signed: false
+      access_pair:
+        id: viperML
+        secret_variable: GITHUB_TOKEN

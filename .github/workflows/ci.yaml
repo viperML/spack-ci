@@ -1,0 +1,38 @@
+name: ci
+
+concurrency:
+  group: ci
+
+on:
+  push:
+    branches:
+      - master
+
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    # container: docker.io/spack/ubuntu-noble
+    permissions:
+      packages: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: spack/spack
+          ref: 8e2caa2b837e8108b2c0668c0ab6f236f258304e
+          path: spack
+
+      - name: Configure Spack
+        run: |
+          echo "$PWD/spack/bin" >> "$GITHUB_PATH"
+          echo "SPACK_COLOR=always" >> "$GITHUB_ENV"
+          ./spack/bin/spack compiler find
+
+      - name: Install
+        run: spack -e . install
+
+      - name: Push
+        run: spack -e . buildcache push --update-index gh-buildcache
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
