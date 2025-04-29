@@ -4,8 +4,10 @@ spack:
     unify: when_possible
 
   specs:
-  # - python
+  - python
+  - py-numpy
   - zstd
+  - npm
 
   config:
     install_tree:
@@ -19,7 +21,6 @@ spack:
   mirrors:
     gh-buildcache:
       url: oci://ghcr.io/viperML/spack-ci
-      # autopush: true
       binary: true
       signed: false
       access_pair:
