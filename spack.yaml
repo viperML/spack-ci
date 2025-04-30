@@ -17,3 +17,4 @@ spack:
   mirrors:
     gh-buildcache:
       url: oci://ghcr.io/viperML/spack-ci
+      signed: false
