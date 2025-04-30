@@ -4,10 +4,11 @@ spack:
     unify: when_possible
 
   specs:
-  - python
-  - py-numpy
   - zstd
-  - npm
+  - cmake
+  # - python
+  # - py-numpy
+  # - npm
 
   config:
     install_tree:
