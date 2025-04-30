@@ -10,11 +10,6 @@ spack:
   # - py-numpy
   # - npm
 
-  config:
-    install_tree:
-      root: /opt/spack
-      padded_length: 128
-
   packages:
     all:
       require: 'target=x86_64'
@@ -22,8 +17,3 @@ spack:
   mirrors:
     gh-buildcache:
       url: oci://ghcr.io/viperML/spack-ci
-      binary: true
-      signed: false
-      access_pair:
-        id: viperML
-        secret_variable: GITHUB_TOKEN
